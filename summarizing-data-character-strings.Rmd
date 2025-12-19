@@ -1,0 +1,79 @@
+---
+title: "Assignment 4- Cassidy Longoria"
+output: html_document
+---
+
+```{r}
+## creating the data set using data.frame and sample()
+set.seed(123)
+data <- data.frame(
+  ID = 1:30,
+  Gender = sample(c("Male", "Female"), 30, replace = TRUE),
+  AgeGroup = sample(c("18-25", "26-35", "36-45"), 30, replace = TRUE),
+  EducationLevel = sample(c("High School", "Bachelor's", "Master's", "PhD"), 30, replace = TRUE),
+  stringsAsFactors = FALSE
+)
+```
+
+## question 2- current structure containing character strings- Gender, AgeGroup, EducationLevels
+```{r}
+cat("\nStructure before conversion:\n")
+str(data)
+```
+
+## question 3 converting character strings to factors using within (), creating columns.
+```{r}
+data <- within(data, {
+  Gender <- factor(Gender, levels = c("Female", "Male"))
+  AgeGroup <- factor(AgeGroup, levels = c("18-25", "26-35", "36-45"), ordered = TRUE)
+  EducationLevel <- factor(EducationLevel,
+                           levels = c("High School", "Bachelor's", "Master's", "PhD"),
+                           ordered = TRUE)
+})
+```
+## question 4- verify conversion from strings -> factors
+```{r}
+cat("\nStructure after conversion:\n")
+str(data)
+```
+
+## question 5- use (summary) for quick breakdown of data
+```{r}
+cat("\nSummary of factor columns:\n")
+print(summary(data[c("Gender", "AgeGroup", "EducationLevel")]))
+```
+## question 6- creating graphs
+```{r}
+library(colorspace)
+rainbow_hcl(4)
+diverge_hcl(3)
+op <- par(mfrow = c(1,3), mar = c(5,4,2,1))
+barplot(table(data$AgeGroup), 
+        main = "Age Groups",
+        xlab = "Age Group", ylab = "Number of Individuals",
+        col = diverge_hcl(3))
+barplot(table(data$Gender),
+        main = "Gender",
+        xlab = "Gender",    ylab = "Number of Individuals",
+        col =c("magenta","steelblue1"))
+barplot(table(data$EducationLevel), 
+        main = "Education Level", 
+        las = 2, cex.names = 0.8,
+        xlab = "", ylab = "Number of Individuals",
+        col = rainbow_hcl(4))
+par(op)
+```
+## question 7- paragraph
+```{r}
+counts_age <- table(data$AgeGroup)
+props_age  <- prop.table(counts_age)
+top_age    <- names(which.max(counts_age))
+top_ed     <- names(which.max(table(data$EducationLevel)))
+top_gen    <- names(which.max(table(data$Gender)))
+```
+```{r}
+cat("\nParagraph:",
+"\nThe most prevalent age group is ", top_age, " with ", counts_age[top_age], " individuals. ",
+"\nThis distribution suggests that analyses may be more strongly influenced by the\n", 
+top_age, "group compared to others.")
+```

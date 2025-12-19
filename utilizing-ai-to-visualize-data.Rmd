@@ -1,0 +1,62 @@
+---
+title: "Project 6"
+output: html_document
+---
+## Certificate
+[Certificate](assets/CertificateOfCompletion.pdf)
+
+## Summary of Concepts Learned
+In Prof. Paulsons course going over R for Data Science: Analysis and Visualization I learned several different useful applications for R Studio, such as:
+- Data Wrangling to filter, sort, change, and summarize datasets
+- Data Visualization with various graphs, charts, and histograms
+- Data Importation using CSV from external sources to analyzing it within R Studio
+- Replicating data through R Notebooks and RMarkdown
+- How to tidy datasets, utilizing 'tidyr'
+- How to explore real world datasets using RStudio
+
+## Finding statistics of a dataset using internal parameters 
+```{r}
+library(tidyverse)
+
+data("mtcars")
+
+# groups data by cylinders, find mpg/weight
+mtcars_summary <- mtcars %>%
+  group_by(cyl) %>%
+  summarise(
+    avg_mpg = mean(mpg),
+    avg_wt = mean(wt)
+  )
+
+print(mtcars_summary)
+```
+
+## Using ChatGPT to determine the spread of EV registration across the United States
+```{r}
+library(tidyverse)
+ev_data <- read_csv("EV_Cleaned.csv")
+
+
+# Get the top 3 states by registration count
+top3 <- ev_data %>%
+  arrange(desc(`Registration Count`)) %>%
+  slice(1:3)
+
+# Calculate total national registrations
+total_national <- sum(ev_data$`Registration Count`)
+
+# Calculate 'Other States' total
+others_total <- total_national - sum(top3$`Registration Count`)
+
+# Create final data frame for plotting
+pie_data <- top3 %>%
+  select(State, `Registration Count`) %>%
+  add_row(State = "Other States", `Registration Count` = others_total)
+
+# Create pie chart
+pie(pie_data$`Registration Count`,
+    labels = paste0(pie_data$State, " (", round(100 * pie_data$`Registration Count` / sum(pie_data$`Registration Count`), 1), "%)"),
+    main = "Top 3 States vs Rest of US - EV Registrations (2023)",
+    col = rainbow(4))
+
+```

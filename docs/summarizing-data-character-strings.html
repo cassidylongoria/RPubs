@@ -365,9 +365,8 @@ data &lt;- data.frame(
 <div id="question-2--current-structure-containing-character-strings--gender-agegroup-educationlevels" class="section level2">
 <h2>question 2- current structure containing character strings- Gender,
 AgeGroup, EducationLevels</h2>
-<pre class="r"><code>cat(&quot;\nStructure before conversion:\n&quot;)</code></pre>
-<pre><code>## 
-## Structure before conversion:</code></pre>
+<pre class="r"><code>cat(&quot;Structure before conversion:\n&quot;)</code></pre>
+<pre><code>## Structure before conversion:</code></pre>
 <pre class="r"><code>str(data)</code></pre>
 <pre><code>## &#39;data.frame&#39;:    30 obs. of  4 variables:
 ##  $ ID            : int  1 2 3 4 5 6 7 8 9 10 ...
@@ -388,9 +387,8 @@ creating columns.</h2>
 </div>
 <div id="question-4--verify-conversion-from-strings---factors" class="section level2">
 <h2>question 4- verify conversion from strings -&gt; factors</h2>
-<pre class="r"><code>cat(&quot;\nStructure after conversion:\n&quot;)</code></pre>
-<pre><code>## 
-## Structure after conversion:</code></pre>
+<pre class="r"><code>cat(&quot;Structure after conversion:\n&quot;)</code></pre>
+<pre><code>## Structure after conversion:</code></pre>
 <pre class="r"><code>str(data)</code></pre>
 <pre><code>## &#39;data.frame&#39;:    30 obs. of  4 variables:
 ##  $ ID            : int  1 2 3 4 5 6 7 8 9 10 ...
@@ -400,9 +398,8 @@ creating columns.</h2>
 </div>
 <div id="question-5--use-summary-for-quick-breakdown-of-data" class="section level2">
 <h2>question 5- use (summary) for quick breakdown of data</h2>
-<pre class="r"><code>cat(&quot;\nSummary of factor columns:\n&quot;)</code></pre>
-<pre><code>## 
-## Summary of factor columns:</code></pre>
+<pre class="r"><code>cat(&quot;Summary of factor columns:\n&quot;)</code></pre>
+<pre><code>## Summary of factor columns:</code></pre>
 <pre class="r"><code>print(summary(data[c(&quot;Gender&quot;, &quot;AgeGroup&quot;, &quot;EducationLevel&quot;)]))</code></pre>
 <pre><code>##     Gender    AgeGroup      EducationLevel
 ##  Female:13   18-25:13   High School:8     
@@ -441,13 +438,12 @@ props_age  &lt;- prop.table(counts_age)
 top_age    &lt;- names(which.max(counts_age))
 top_ed     &lt;- names(which.max(table(data$EducationLevel)))
 top_gen    &lt;- names(which.max(table(data$Gender)))</code></pre>
-<pre class="r"><code>cat(&quot;\nParagraph:&quot;,
-&quot;\nThe most prevalent age group is &quot;, top_age, &quot; with &quot;, counts_age[top_age], &quot; individuals. &quot;,
+<pre class="r"><code>cat(&quot;Paragraph:&quot;,
+&quot;\nThe most prevalent age group is&quot;, top_age, &quot;with&quot;, counts_age[top_age], &quot;individuals.&quot;,
 &quot;\nThis distribution suggests that analyses may be more strongly influenced by the&quot;, 
 top_age, &quot;group compared to others.&quot;)</code></pre>
-<pre><code>## 
-## Paragraph: 
-## The most prevalent age group is  18-25  with  13  individuals.  
+<pre><code>## Paragraph: 
+## The most prevalent age group is 18-25 with 13 individuals. 
 ## This distribution suggests that analyses may be more strongly influenced by the 18-25 group compared to others.</code></pre>
 </div>
 

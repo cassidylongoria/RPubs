@@ -16,12 +16,14 @@ data <- data.frame(
 ```
 
 ## question 2- current structure containing character strings- Gender, AgeGroup, EducationLevels
+
 ```{r}
-cat("\nStructure before conversion:\n")
+cat("Structure before conversion:\n")
 str(data)
 ```
 
 ## question 3 converting character strings to factors using within (), creating columns.
+
 ```{r}
 data <- within(data, {
   Gender <- factor(Gender, levels = c("Female", "Male"))
@@ -31,18 +33,23 @@ data <- within(data, {
                            ordered = TRUE)
 })
 ```
-## question 4- verify conversion from strings -> factors
+
+## question 4- verify conversion from strings -\> factors
+
 ```{r}
-cat("\nStructure after conversion:\n")
+cat("Structure after conversion:\n")
 str(data)
 ```
 
 ## question 5- use (summary) for quick breakdown of data
+
 ```{r}
-cat("\nSummary of factor columns:\n")
+cat("Summary of factor columns:\n")
 print(summary(data[c("Gender", "AgeGroup", "EducationLevel")]))
 ```
+
 ## question 6- creating graphs
+
 ```{r}
 library(colorspace)
 rainbow_hcl(4)
@@ -63,7 +70,9 @@ barplot(table(data$EducationLevel),
         col = rainbow_hcl(4))
 par(op)
 ```
+
 ## question 7- paragraph
+
 ```{r}
 counts_age <- table(data$AgeGroup)
 props_age  <- prop.table(counts_age)
@@ -71,10 +80,18 @@ top_age    <- names(which.max(counts_age))
 top_ed     <- names(which.max(table(data$EducationLevel)))
 top_gen    <- names(which.max(table(data$Gender)))
 ```
+
 ```{r}
+<<<<<<< HEAD
 cat("\nParagraph:",
 "\nThe most prevalent age group is", top_age, "with", counts_age[top_age], "individuals.",
 "\nThis distribution suggests that analyses may be more strongly influenced by the", 
 top_age, "group compared to others.")
 
+=======
+cat("Paragraph:",
+"\nThe most prevalent age group is", top_age, "with", counts_age[top_age], "individuals.",
+"\nThis distribution suggests that analyses may be more strongly influenced by the", 
+top_age, "group compared to others.")
+>>>>>>> cbf293c (formatting)
 ```

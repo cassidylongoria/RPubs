@@ -1,10 +1,19 @@
 ---
 title: "Presentation 3- Cassidy Longoria"
-output: html_notebook
+output: html_document
 ---
 How To access a column in R:
 We have a dataset of a survey containing multiple columns of information. 
 We are interested in the isolating the satisfaction scores of the survey:
+
+```{r setup, include=FALSE}
+library(tidyverse)
+library(readxl)
+library(here)
+knitr::opts_knit$set(root.dir = here::here())
+SatisfactionSurvey <- read_excel(here("data", "SatisfactionSurvey.xlsx"))
+
+```
 
 So, we need to extract the data from the Satisfaction column:
 
@@ -31,14 +40,15 @@ hist(Sat,
      col = rainbow(5),
      border = "grey",
      main = "Satisfaction Distribution",
-     xlab = "Satisfaction Score",
+     xlab = "Satisfaction Score"
   )
 
 boxplot(Sat,
         col = "lightsteelblue3",
         border = "black",
         main = "Boxplot of Satisfaction",
-        ylab = "Satisfaction Score")
+        ylab = "Satisfaction Score"
+  )
 
 ```
 
@@ -48,6 +58,7 @@ Determining the average satisfaction rating of each age group.
 
 ```{r}
 # Question 3
+
 # Extracts the satisfaction from our data set creating vector now referred to as "Sat"
 Sat <- SatisfactionSurvey
 
@@ -70,13 +81,14 @@ names(Age_Mean_Sat_df) <- c("Age", "Mean Satisfaction")
 
 # Displays data frame
 Age_Mean_Sat_df
+
 ```
 
 Creating a matrix sorting named elements and a numberic value:
 
 Determining the average satisfaction score per department:
 
-``` {r}
+```{r}
 # Question 4
 
 # Keeps full data set
@@ -100,6 +112,7 @@ colnames(Department_Sat_Matrix_T) <- c("Mean Satisfaction")
 
 # View Matrix
 Department_Sat_Matrix_T
+
 ```
 
 Analyzing Data frames:
@@ -142,24 +155,26 @@ The range of different columns within the data set (Age, Satisfaction)
 ```{r}
 # Question 7 & 8
 
+library(RColorBrewer)
+
 # Keeps full data set
 Sat <- SatisfactionSurvey
 
 # Making the Histogram
 hist(Sat$Age,
-     col = primary.colors(30),
+     col = brewer.pal(8, "Set2"),
      border = "grey",
      main = "Employee Age Distribution",
-     xlab = "Age",
+     xlab = "Age"
 )
 
 hist(Sat$Satisfaction,
-     col = primary.colors(30),
+     col = brewer.pal(7, "RdYlGn"),
      border = "grey",
      main = "Satisfaction Distribution",
-     xlab = "Satisfaction Scores",
+     xlab = "Satisfaction Scores"
 )
-#
+
 ```
 
 Distribution analysis through box plots:
@@ -173,7 +188,7 @@ Assessing data spread through box plot, determining IQR to identify outliers.
 Sat <- SatisfactionSurvey
 
 # Satisfaction across Departments
-boxplot(Sat_Dep,
+boxplot(Satisfaction ~ Department,
         data = Sat,
         col = c("orchid3", "plum4", "lightpink3", "lightsteelblue"),
         border = "grey",
@@ -197,7 +212,8 @@ boxplot(Sat$Satisfaction,
         col = "lightsteelblue3",
         border = "black",
         main = "Boxplot of Satisfaction",
-        ylab = "Satisfaction Score")
+        ylab = "Satisfaction Score"
+)
 
 # Explaining findings- overall satisfaction
 message("IQR and Outliers")

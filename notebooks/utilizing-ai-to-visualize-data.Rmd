@@ -2,22 +2,36 @@
 title: "Project 6"
 output: html_document
 ---
+
+```{r setup, include=FALSE}
+library(tidyverse)
+library(here)
+knitr::opts_knit$set(root.dir = here::here())
+```
+
 ## Certificate
+
 [Certificate](assets/CertificateOfCompletion.pdf)
 
-## Summary of Concepts Learned
-In Prof. Paulsons course going over R for Data Science: Analysis and Visualization I learned several different useful applications for R Studio, such as:
-- Data Wrangling to filter, sort, change, and summarize datasets
-- Data Visualization with various graphs, charts, and histograms
-- Data Importation using CSV from external sources to analyzing it within R Studio
-- Replicating data through R Notebooks and RMarkdown
-- How to tidy datasets, utilizing 'tidyr'
-- How to explore real world datasets using RStudio
+## Summary of concepts learned
 
-## Finding statistics of a dataset using internal parameters 
+I learned several different useful applications for R Studio in Prof. Paulsons' course: R for Data Science: Analysis and Visualization, such as:
+
+\- Data Wrangling to filter, sort, change, and summarize data sets
+
+\- Data Visualization with various graphs, charts, and histograms
+
+\- Data Importation using CSV from external sources to analyzing it within R Studio
+
+\- Replicating data through R Notebooks and RMarkdown
+
+\- Tidy data sets utilizing 'tidyr'
+
+\- Exploring real world data sets using RStudio
+
+## Finding statistics of a data set using internal parameters
+
 ```{r}
-library(tidyverse)
-
 data("mtcars")
 
 # groups data by cylinders, find mpg/weight
@@ -32,10 +46,17 @@ print(mtcars_summary)
 ```
 
 ## Using ChatGPT to determine the spread of EV registration across the United States
-```{r}
-library(tidyverse)
-ev_data <- read_csv("EV_Cleaned.csv")
 
+After locating electric vehicle (EV) registration data, the dataset was converted from Google Sheets to CSV format with assistance from AI tools to streamline preprocessing. The EV registration counts were then merged with 2024 state-level population data sourced from the U.S Census Bureau (via Statista) to create a unified dataset that enabled proportional comparison across the states.
+
+This merged dataset was imported into RStudio for analysis and visualization. A pie chart was created to illustrate the concentration of EV registrations relative to state population, making it easier to identify regional patterns. This visualization highlights that approximately that half of the country's EV Registration are concentrated within just three states.
+
+Population data used to merge EV registration counts was sourced from:
+
+\- U.S. Census Bureau (2024), via Statista: *Resident population of the U.S. by state*
+
+```{r}
+ev_data <- readr::read_csv(here("data", "EV_Cleaned.csv"))
 
 # Get the top 3 states by registration count
 top3 <- ev_data %>%

@@ -74,6 +74,6 @@ top_gen    <- names(which.max(table(data$Gender)))
 ```{r}
 cat("\nParagraph:",
 "\nThe most prevalent age group is ", top_age, " with ", counts_age[top_age], " individuals. ",
-"\nThis distribution suggests that analyses may be more strongly influenced by the\n", 
+"\nThis distribution suggests that analyses may be more strongly influenced by the", 
 top_age, "group compared to others.")
 ```

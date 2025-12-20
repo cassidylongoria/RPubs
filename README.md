@@ -4,7 +4,7 @@ This repository contains selected R Markdown projects focused on data analysis, 
 ## Summarizing Data: Character Strings
 Demonstrates data summarization and manipulation techniques in R utilizing RStudio's internal datasets, with a focus on handling and analyzing character string variables. 
 
-- Published R Markdown: https://rpubs.com/Komosko/1348873
+- Published R Markdown: https://rpubs.com/Komosko/1382933
 - Report: `docs/summarizing-data-character-strings.html`
 - Source: `notebooks/summarizing-data-character-strings.Rmd`
 
